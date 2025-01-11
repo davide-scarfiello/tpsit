@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Countdown</title>
+  <style>
+    #immagine {
+      display: none;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div id="contatore">3</div>
+  <div id="immagine">
+    <img src="https://www.everyeye.it/public/articoli/04022018/Dark-Souls-Solaire-limportanza-di-Lodare-il-Sole-SPECIALE-2.jpg" alt="Immagine">
+  </div>
+
+  <script>
+    var numero = 3;
+    var contatore = document.getElementById("contatore");
+    var immagine = document.getElementById("immagine");
+
+    var timer = setInterval(function() {
+      numero--;
+      if (numero > 0) {
+        contatore.textContent = numero;
+      } else {
+        clearInterval(timer);
+        contatore.style.display = "none";
+        immagine.style.display = "block";
+      }
+    }, 1000);
+  </script>
+</body>
+</html>

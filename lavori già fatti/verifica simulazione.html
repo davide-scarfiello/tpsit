@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temporizzatore Numero Casuale</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        h1 {
+            text-align: center;
+        }
+        #output {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e0e0e0;
+            border-radius: 10px;
+        }
+        p {
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Generatore di Numero Casuale</h1>
+    <div id="output">
+        <p><strong>Numero Casuale:</strong> <span id="numero"></span></p>
+        <p><strong>Pari o Dispari:</strong> <span id="pariDispari"></span></p>
+        <p><strong>È Primo?</strong> <span id="primo"></span></p>
+        <p><strong>Il Doppio:</strong> <span id="doppio"></span></p>
+        <p><strong>La Metà Intera:</strong> <span id="meta"></span></p>
+        <p><strong>Complemento a 1000:</strong> <span id="complemento"></span></p>
+        <p><strong>Somma con Precedente e Successivo:</strong> <span id="somma"></span></p>
+        <p><strong>Moltiplicato per 3.14:</strong> <span id="moltiplicato"></span></p>
+    </div>
+
+    <script>
+        // Funzione per generare un numero casuale tra 1 e 1000
+        function generaNumero() {
+            return Math.floor(Math.random() * 1000) + 1;
+        }
+
+        // Funzione per controllare se un numero è primo
+        function isPrimo(num) {
+            if (num <= 1) return false;
+            for (let i = 2; i < num; i++) {
+                if (num % i === 0) return false;
+            }
+            return true;
+        }
+
+        // Funzione per aggiornare i valori nella pagina
+        function aggiorna() {
+            const numero = generaNumero();
+            document.getElementById('numero').textContent = numero;
+            
+            // Pari o Dispari
+            const pariDispari = (numero % 2 === 0) ? 'Pari' : 'Dispari';
+            document.getElementById('pariDispari').textContent = pariDispari;
+
+            // Controllo se è primo
+            const primo = isPrimo(numero) ? 'Sì' : 'No';
+            document.getElementById('primo').textContent = primo;
+
+            // Doppio e Metà
+            const doppio = numero * 2;
+            const meta = Math.floor(numero / 2);
+            document.getElementById('doppio').textContent = doppio;
+            document.getElementById('meta').textContent = meta;
+
+            // Complemento a 1000
+            const complemento = 1000 - numero;
+            document.getElementById('complemento').textContent = complemento;
+
+            // Somma con il numero precedente e successivo
+            const somma = (numero - 1) + numero + (numero + 1);
+            document.getElementById('somma').textContent = somma;
+
+            // Moltiplicato per 3.14
+            const moltiplicato = (numero * 3.14).toFixed(2);
+            document.getElementById('moltiplicato').textContent = moltiplicato;
+        }
+
+        // Chiamata della funzione ogni 5 secondi
+        setInterval(aggiorna, 5000);
+
+        // Prima esecuzione al caricamento
+        aggiorna();
+    </script>
+
+</body>
+</html>
