@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Morra Cinese</title>
+    <style>
+        #out2 {
+            font-size: large;
+            color: brown;
+        }
+        .image-option {
+            width: 100px;
+            cursor: pointer;
+            margin: 10px;
+        }
+        #out1 {
+            font-size: large;
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Gioca a Morra Cinese!</h2>
+
+    <div id="out1"></div> <!-- Punti -->
+
+    <p>Scegli una delle opzioni:</p>
+    
+    <!-- Immagini cliccabili -->
+    <img src="" alt="Sasso" class="image-option" onclick="userChoice('sasso')">
+    <img src="" alt="Carta" class="image-option" onclick="userChoice('carta')">
+    <img src="" alt="Forbice" class="image-option" onclick="userChoice('forbice')">
+
+    <div id="out2"></div> <!-- Risultato gioco -->
+
+    <script>
+        let morra = ["sasso", "carta", "forbice"];
+        let userScore = 0;
+        let botScore = 0;
+
+        // Funzione per gestire la scelta dell'utente
+        function userChoice(choice) {
+            // Mostra il risultato dell'utente
+            document.getElementById("out1").innerHTML = "Hai scelto: " + choice;
+
+            // Funzione per scegliere casualmente la mossa del bot
+            let botChoice = morra[Math.floor(Math.random() * 3)];
+
+            // Mostra la scelta del bot
+            document.getElementById("out2").innerHTML = "Il bot ha scelto: " + botChoice;
+
+            // Determina il vincitore
+            let result = determineWinner(choice, botChoice);
+            document.getElementById("out2").innerHTML += "<br>" + result;
+            updateScore(result);
+       
